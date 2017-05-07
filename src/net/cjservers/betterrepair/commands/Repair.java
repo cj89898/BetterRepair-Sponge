@@ -40,7 +40,7 @@ public class Repair implements CommandExecutor {
 							// Don't repair
 						} else if (Main.instance.disabled.contains(name)) {
 							// Don't repair
-						} else if (name.indexOf("tconstruct") != -1) {
+						} else if (Main.instance.disabledMods.contains(name.split(":")[0])) {
 							// Don't repair
 						} else if (item.supports(DurabilityData.class)) {
 							Integer max = item.getProperty(UseLimitProperty.class).get().getValue();
@@ -62,7 +62,7 @@ public class Repair implements CommandExecutor {
 				} else if (Main.instance.disabled.contains(name)) {
 					p.sendMessage(Text.builder("Item can't be Repaired!").color(TextColors.RED).build());
 					return CommandResult.success();
-				} else if (name.indexOf("tconstruct") != -1) {
+				} else if (Main.instance.disabledMods.contains(name.split(":")[0])) {
 					p.sendMessage(Text.builder("Item can't be Repaired!").color(TextColors.RED).build());
 					return CommandResult.success();
 				} else if (item.supports(DurabilityData.class)) {

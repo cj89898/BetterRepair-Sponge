@@ -1,5 +1,10 @@
 # Better Repair created by cj89898
 
-#Format is mod:item_name
+#Format is modid:item_name
 #For easy use, just use the in-game commands
 disabled-items: ['minecraft:diamond_pickaxe']
+
+
+#Use the modid
+#Easily disable entire mods
+disabled-mods: ['tconstruct']

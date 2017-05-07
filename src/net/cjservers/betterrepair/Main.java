@@ -33,6 +33,7 @@ public class Main {
 	
 	public static Main instance;
 	public List<String> disabled;
+	public List<String> disabledMods;
 	
 	@Inject
 	private Logger logger;
@@ -64,6 +65,12 @@ public class Main {
 		
 		try {
 			disabled = getConfig().getNode("disabled-items").getList(TypeToken.of(String.class));
+		} catch (ObjectMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			disabledMods = getConfig().getNode("disabled-mods").getList(TypeToken.of(String.class));
 		} catch (ObjectMappingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
