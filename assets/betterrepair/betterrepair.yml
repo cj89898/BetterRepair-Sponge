@@ -1,0 +1,5 @@
+# Better Repair created by cj89898
+
+#Format is mod:item_name
+#For easy use, just use the in-game commands
+disabled-items: ['minecraft:diamond_pickaxe']
