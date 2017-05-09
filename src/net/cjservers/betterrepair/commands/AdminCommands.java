@@ -79,7 +79,13 @@ public class AdminCommands implements CommandExecutor {
 					return CommandResult.success();
 				}
 				try {
-					Main.instance.disabled = Main.instance.getConfig().getList(TypeToken.of(String.class));
+					Main.instance.disabled = Main.instance.getConfig().getNode("disabled-items").getList(TypeToken.of(String.class));
+				} catch (ObjectMappingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					Main.instance.disabledMods = Main.instance.getConfig().getNode("disabled-mods").getList(TypeToken.of(String.class));
 				} catch (ObjectMappingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -80,26 +80,36 @@ public class Main {
 	}
 	
 	@Listener
-	public void reload(GameReloadEvent event){
+	public void reload(GameReloadEvent event) {
 		try {
-			Main.instance.disabled = Main.instance.getConfig().getList(TypeToken.of(String.class));
+			disabled = getConfig().getNode("disabled-items").getList(TypeToken.of(String.class));
 		} catch (ObjectMappingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Sponge.getServer().getConsole().sendMessage(Text.builder("[BetterRepair] Config Reloaded!").color(TextColors.GREEN).build());
+		try {
+			disabledMods = getConfig().getNode("disabled-mods").getList(TypeToken.of(String.class));
+		} catch (ObjectMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Sponge.getServer().getConsole()
+				.sendMessage(Text.builder("[BetterRepair] Config Reloaded!").color(TextColors.GREEN).build());
 	}
 	
 	public Logger getLogger() {
 		return logger;
 	}
-	@Inject @ConfigDir(sharedRoot = false) private Path configDir;
+	
+	@Inject
+	@ConfigDir(sharedRoot = false)
+	private Path configDir;
 	private ConfigurationLoader<ConfigurationNode> confLoader;
 	private ConfigurationNode conf;
 	
 	public void createConfig() {
 		Path configFile = configDir.resolve("betterrepair.yml");
-		if(!Files.exists(configFile)){
+		if (!Files.exists(configFile)) {
 			try {
 				Files.createDirectories(configDir);
 			} catch (IOException e1) {
