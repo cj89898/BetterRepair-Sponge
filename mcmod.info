@@ -1,7 +1,7 @@
 [{
     "modid": "betterrepair",
     "name": "Better Repair",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "A better repair plugin!",
     "authorList": [
         "cj89898"
