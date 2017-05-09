@@ -12,10 +12,12 @@ import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.ConfigDir;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.game.GameReloadEvent;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColors;
 
 import com.google.common.reflect.TypeToken;
 import com.google.inject.Inject;
@@ -77,6 +79,17 @@ public class Main {
 		}
 	}
 	
+	@Listener
+	public void reload(GameReloadEvent event){
+		try {
+			Main.instance.disabled = Main.instance.getConfig().getList(TypeToken.of(String.class));
+		} catch (ObjectMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Sponge.getServer().getConsole().sendMessage(Text.builder("[BetterRepair] Config Reloaded!").color(TextColors.GREEN).build());
+	}
+	
 	public Logger getLogger() {
 		return logger;
 	}
@@ -86,17 +99,19 @@ public class Main {
 	
 	public void createConfig() {
 		Path configFile = configDir.resolve("betterrepair.yml");
-		try {
-			Files.createDirectories(configDir);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			Sponge.getAssetManager().getAsset(this, "betterrepair.yml").get().copyToFile(configFile);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(!Files.exists(configFile)){
+			try {
+				Files.createDirectories(configDir);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				Sponge.getAssetManager().getAsset(this, "betterrepair.yml").get().copyToFile(configFile);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		this.confLoader = YAMLConfigurationLoader.builder().setPath(configFile).build();
 		conf = confLoader.createEmptyNode(ConfigurationOptions.defaults());
