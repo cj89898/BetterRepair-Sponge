@@ -10,3 +10,6 @@ Has configurable options to disable an entire mod as well as individual items! I
 /br remove -- Removes current item from non-repairable list -- betterrepair.remove  
 /br reload -- Reloads config -- betterrepair.reload  
 /br ? -- Lists current commands  
+
+# Download
+Releases available at: https://ore.spongepowered.org/cj89898/Better-Repair
