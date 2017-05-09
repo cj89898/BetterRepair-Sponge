@@ -1,12 +1,9 @@
 [{
     "modid": "betterrepair",
     "name": "Better Repair",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "A better repair plugin!",
     "authorList": [
         "cj89898"
-    ],
-    "dependencies": [
-        "worldedit"
     ]
 }]

@@ -30,7 +30,7 @@ import ninja.leaping.configurate.loader.ConfigurationLoader;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import ninja.leaping.configurate.yaml.YAMLConfigurationLoader;
 
-@Plugin(id = "betterrepair", name = "Better Repair", version = "1.2.0", dependencies = @Dependency(id = "worldedit", optional = true))
+@Plugin(id = "betterrepair", name = "Better Repair", version = "1.2.1")
 public class Main {
 	
 	public static Main instance;
