@@ -35,8 +35,8 @@ public class Repair implements CommandExecutor {
 				for (Inventory slot : inv.slots()) {
 					if (slot.peek().isPresent()) {
 						ItemStack item = slot.peek().get();
-						String name = item.getItem().getType().getName();
-						if (item.supports(BlockItemData.class)) {
+						String name = item.getItem().getName();
+						if (item.getItem().getBlock().isPresent()) {
 							// Don't repair
 						} else if (Main.instance.disabled.contains(name)) {
 							// Don't repair
@@ -55,8 +55,8 @@ public class Repair implements CommandExecutor {
 			Optional<ItemStack> check = p.getItemInHand(HandTypes.MAIN_HAND);
 			if (check.isPresent()) {
 				ItemStack item = check.get();
-				String name = item.getItem().getType().getName();
-				if (item.supports(BlockItemData.class)) {
+				String name = item.getItem().getName();
+				if (item.getItem().getBlock().isPresent()) {
 					p.sendMessage(Text.builder("Item can't be Repaired!").color(TextColors.RED).build());
 					return CommandResult.success();
 				} else if (Main.instance.disabled.contains(name)) {

@@ -33,11 +33,11 @@ public class AdminCommands implements CommandExecutor {
 				Optional<ItemStack> itemO = p.getItemInHand(HandTypes.MAIN_HAND);
 				if (itemO.isPresent()) {
 					ItemStack item = itemO.get();
-					String name = item.getItem().getType().getName();
+					String name = item.getItem().getName();
 					if (Main.instance.disabled.contains(name)) {
 						src.sendMessage(Text.builder("Item is already on the list!").color(TextColors.RED).build());
 						return CommandResult.success();
-					} else if (item.supports(BlockItemData.class)) {
+					} else if (item.getItem().getBlock().isPresent()) {
 						src.sendMessage(Text.builder("Item is a block!").color(TextColors.RED).build());
 						return CommandResult.success();
 					} else {
@@ -59,7 +59,7 @@ public class AdminCommands implements CommandExecutor {
 				Optional<ItemStack> itemO = p.getItemInHand(HandTypes.MAIN_HAND);
 				if (itemO.isPresent()) {
 					ItemStack item = itemO.get();
-					String name = item.getItem().getType().getName();
+					String name = item.getItem().getName();
 					if (Main.instance.disabled.contains(name)) {
 						Main.instance.disabled.remove(name);
 						Main.instance.getConfig().getNode("disabled-items").setValue(Main.instance.disabled);
